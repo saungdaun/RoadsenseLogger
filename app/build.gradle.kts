@@ -46,7 +46,6 @@ android {
     }
 }
 
-// ✅ KSP configuration
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
     arg("room.incremental", "true")
@@ -84,7 +83,7 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    // Charting
+    // Charting (JitPack)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // PDF Export
@@ -94,7 +93,7 @@ dependencies {
     implementation("org.apache.poi:poi:5.2.5")
     implementation("org.apache.poi:poi-ooxml:5.2.5")
 
-    // Image Picker
+    // Image Picker (JitPack)
     implementation("com.github.dhaval2404:imagepicker:2.1")
 
     // Location Services
@@ -109,7 +108,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
 
-// Untuk Apache POI
 configurations.all {
     exclude(group = "stax", module = "stax-api")
     exclude(group = "xalan", module = "xalan")
