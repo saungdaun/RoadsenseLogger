@@ -6,6 +6,3 @@
 -dontwarn javax.xml.parsers.**
 -dontwarn javax.management.**
 -dontwarn javax.activation.**
-
-# =========================
-# Apache

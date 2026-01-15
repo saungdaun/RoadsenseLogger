@@ -51,30 +51,6 @@ android {
         // COMPOSE DISABLED - Kita pakai XML
         compose = false
     }
-
-    // Fix untuk META-INF conflicts (Apache POI)
-    packaging {
-        resources {
-            excludes += setOf(
-                "META-INF/NOTICE.md",
-                "META-INF/LICENSE.md",
-                "META-INF/NOTICE",
-                "META-INF/LICENSE",
-                "META-INF/NOTICE.txt",
-                "META-INF/LICENSE.txt",
-                "META-INF/DEPENDENCIES",
-                "META-INF/ASL2.0",
-                "META-INF/LGPL2.1",
-                "META-INF/AL2.0",
-                "META-INF/androidx.compose.*.version",
-                "META-INF/proguard/androidx-*.pro"
-            )
-            
-            pickFirsts += setOf(
-                "META-INF/versions/9/previous-compilation-data.bin"
-            )
-        }
-    }
 }
 
 ksp {
@@ -120,10 +96,6 @@ dependencies {
     // PDF Export
     implementation("com.itextpdf:itext7-core:7.2.5")
 
-    // Excel Export
-    implementation("org.apache.poi:poi:5.2.5")
-    implementation("org.apache.poi:poi-ooxml:5.2.5")
-
     // Image Picker
     implementation("com.github.dhaval2404:imagepicker:2.1")
 
@@ -143,7 +115,7 @@ configurations.all {
     exclude(group = "stax", module = "stax-api")
     exclude(group = "xalan", module = "xalan")
     exclude(group = "commons-logging", module = "commons-logging")
-    
+
     // EXCLUDE SEMUA COMPOSE LIBRARIES
     exclude(group = "androidx.compose.ui")
     exclude(group = "androidx.compose.material")
