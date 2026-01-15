@@ -29,9 +29,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-        debug {
-            isMinifyEnabled = false
-        }
     }
 
     compileOptions {
@@ -48,13 +45,12 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
-        // COMPOSE DISABLED - Kita pakai XML
-        compose = false
     }
 
-    // Fix untuk META-INF conflicts (Apache POI)
+    // ===== FIX UNTUK ERROR META-INF =====
     packaging {
         resources {
+            // Exclude duplicate files dari Apache POI & dependencies lain
             excludes += setOf(
                 "META-INF/NOTICE.md",
                 "META-INF/LICENSE.md",
@@ -66,10 +62,10 @@ android {
                 "META-INF/ASL2.0",
                 "META-INF/LGPL2.1",
                 "META-INF/AL2.0",
-                "META-INF/androidx.compose.*.version",
-                "META-INF/proguard/androidx-*.pro"
+                "META-INF/LGPL2.1"
             )
-            
+
+            // Pick first occurrence untuk file yang konflikt
             pickFirsts += setOf(
                 "META-INF/versions/9/previous-compilation-data.bin"
             )
@@ -84,71 +80,63 @@ ksp {
 }
 
 dependencies {
-    // Core Android - XML Based UI
+    // Core Android
     implementation("androidx.core:core-ktx:1.13.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     // Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
 
     // Room Database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.8.4")
+    implementation("androidx.room:room-ktx:2.8.4")
+    ksp("androidx.room:room-compiler:2.8.4")
 
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     // Hilt DI
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    ksp("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.51")
+    ksp("com.google.dagger:hilt-compiler:2.51")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    // Charting
+    // Charting (JitPack)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // PDF Export
     implementation("com.itextpdf:itext7-core:7.2.5")
 
-    // Excel Export
+    // Excel Export (Apache POI - yang bikin masalah META-INF)
     implementation("org.apache.poi:poi:5.2.5")
     implementation("org.apache.poi:poi-ooxml:5.2.5")
 
-    // Image Picker
+    // Image Picker (JitPack)
     implementation("com.github.dhaval2404:imagepicker:2.1")
 
     // Location Services
-    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 
     // Timber Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
 
 configurations.all {
     exclude(group = "stax", module = "stax-api")
     exclude(group = "xalan", module = "xalan")
     exclude(group = "commons-logging", module = "commons-logging")
-    
-    // EXCLUDE SEMUA COMPOSE LIBRARIES
-    exclude(group = "androidx.compose.ui")
-    exclude(group = "androidx.compose.material")
-    exclude(group = "androidx.compose.material3")
-    exclude(group = "androidx.compose.foundation")
-    exclude(group = "androidx.compose.runtime")
-    exclude(group = "androidx.compose.animation")
 }
