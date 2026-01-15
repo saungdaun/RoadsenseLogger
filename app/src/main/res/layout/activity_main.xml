@@ -1,183 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rootLayout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Connection Status -->
-    <TextView
-        android:id="@+id/tvConnectionStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DISCONNECTED"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="8dp"
-        android:textColor="@android:color/holo_red_dark" />
-
-    <!-- Device Name -->
-    <TextView
-        android:id="@+id/tvDeviceName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Device: -"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:padding="4dp" />
-
-    <!-- Data Display -->
-    <TextView android:id="@+id/tvSpeedValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Speed: 0 km/h"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvOdoValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Odometer: 0 m"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvTripValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Trip: 0 m"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvSystemState"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="System: UNKNOWN"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvMaxSpeedValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Max Speed: 0 km/h"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvAvgSpeedValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Avg Speed: 0 km/h"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvAccelZValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Accel Z: 0 g"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvTimeValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Time: --:--"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvPacketCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Packets: 0"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <TextView android:id="@+id/tvViewMode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View 1/6"
-        android:textSize="16sp"
-        android:padding="4dp" />
-
-    <!-- Buttons Row 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnConnect"
-            android:layout_width="wrap_content"
+        <!-- Connection Status -->
+        <TextView
+            android:id="@+id/tvConnectionStatus"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Connect" />
+            android:text="DISCONNECTED"
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/btnDisconnect"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvDeviceName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Disconnect" />
+            android:text="Device: -"
+            android:textSize="14sp"/>
 
-        <Button
-            android:id="@+id/btnScan"
-            android:layout_width="wrap_content"
+        <!-- Connection Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scan" />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnConnect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Connect ESP32"/>
+
+            <Button
+                android:id="@+id/btnDisconnect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Disconnect"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnScan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Scan"/>
+        </LinearLayout>
+
+        <!-- Device List -->
+        <ListView
+            android:id="@+id/deviceListView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Data Display -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SPEED"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+        <TextView
+            android:id="@+id/tvSpeedValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0.0 km/h"
+            android:textSize="32sp"
+            android:textStyle="bold"/>
+
+        <!-- ODO & TRIP -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ODO:"/>
+            <TextView
+                android:id="@+id/tvOdoValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0.0 m"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TRIP:"/>
+            <TextView
+                android:id="@+id/tvTripValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0.0 m"/>
+        </LinearLayout>
+
+        <!-- Stats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="MAX:"/>
+            <TextView
+                android:id="@+id/tvMaxSpeedValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0.0 km/h"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="AVG:"/>
+            <TextView
+                android:id="@+id/tvAvgSpeedValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0.0 km/h"/>
+        </LinearLayout>
+
+        <!-- Acceleration Z - TAMBAHKAN INI -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ACCEL Z:"/>
+            <TextView
+                android:id="@+id/tvAccelZValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="0.00 g"/>
+        </LinearLayout>
+
+        <!-- Control Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="START"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="STOP"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnPause"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PAUSE"
+                android:enabled="false"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnResetTrip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RESET TRIP"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btnNextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NEXT VIEW"
+                android:enabled="false"/>
+        </LinearLayout>
+
+        <!-- System Info -->
+        <TextView
+            android:id="@+id/tvSystemState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="State: READY"/>
+        <TextView
+            android:id="@+id/tvTimeValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time: --:--"/>
+        <TextView
+            android:id="@+id/tvPacketCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Packets: 0"/>
+        <TextView
+            android:id="@+id/tvViewMode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View: 1/6"/>
+
     </LinearLayout>
-
-    <!-- Buttons Row 2 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Start" />
-
-        <Button
-            android:id="@+id/btnStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Stop" />
-
-        <Button
-            android:id="@+id/btnPause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pause" />
-    </LinearLayout>
-
-    <!-- Buttons Row 3 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnResetTrip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reset Trip" />
-
-        <Button
-            android:id="@+id/btnNextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next View" />
-    </LinearLayout>
-
-    <!-- List of Devices -->
-    <ListView
-        android:id="@+id/deviceListView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp" />
-
-</LinearLayout>
+</ScrollView>
