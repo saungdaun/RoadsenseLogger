@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f5f5f5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,232 +11,501 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Connection Status -->
-        <TextView
-            android:id="@+id/tvConnectionStatus"
+        <!-- HEADER STATUS -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DISCONNECTED"
-            android:textColor="#FF0000"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/card_background">
 
-        <TextView
-            android:id="@+id/tvDeviceName"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONNECTION STATUS"
+                    android:textSize="12sp"
+                    android:textColor="#666"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/tvConnectionStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DISCONNECTED"
+                        android:textSize="18sp"
+                        android:textColor="#FF6B6B"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvDeviceName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Device"
+                        android:textSize="14sp"
+                        android:textColor="#666"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#eee"
+                    android:layout_marginVertical="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SYSTEM STATE"
+                    android:textSize="12sp"
+                    android:textColor="#666"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvSystemState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="READY"
+                    android:textSize="16sp"
+                    android:textColor="#4CAF50"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- REAL-TIME DATA GRID -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Device: -"
-            android:textSize="14sp"/>
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="16dp">
 
-        <!-- Connection Buttons -->
-        <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REAL-TIME DATA"
+                    android:textSize="14sp"
+                    android:textColor="#333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Speed -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SPEED"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="28sp"
+                            android:textColor="#2196F3"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="km/h"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+
+                    <!-- Trip -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TRIP"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvTripValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="24sp"
+                            android:textColor="#4CAF50"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="meters"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+
+                    <!-- Odometer -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ODOMETER"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvOdoValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="18sp"
+                            android:textColor="#9C27B0"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="meters"
+                            android:textSize="12sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Acceleration -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ACCELERATION Z"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvAccelZValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00"
+                            android:textSize="16sp"
+                            android:textColor="#FF9800"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="g-force"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+
+                    <!-- Max Speed -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MAX SPEED"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvMaxSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="16sp"
+                            android:textColor="#F44336"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="km/h"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+
+                    <!-- Avg Speed -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AVG SPEED"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+
+                        <TextView
+                            android:id="@+id/tvAvgSpeedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="16sp"
+                            android:textColor="#009688"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="km/h"
+                            android:textSize="10sp"
+                            android:textColor="#666"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Info Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:id="@+id/tvTimeValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="--:--"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:drawableStart="@android:drawable/ic_lock_lock"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvPacketCount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Packets: 0"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:drawableStart="@android:drawable/ic_menu_info_details"
+                        android:drawablePadding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvViewMode"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="View 1/6"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:drawableStart="@android:drawable/ic_menu_view"
+                        android:drawablePadding="4dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- CONTROL BUTTONS -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="16dp">
 
-            <Button
-                android:id="@+id/btnConnect"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Connect ESP32"/>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <Button
-                android:id="@+id/btnDisconnect"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Disconnect"
-                android:enabled="false"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONTROL PANEL"
+                    android:textSize="14sp"
+                    android:textColor="#333"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
 
-            <Button
-                android:id="@+id/btnScan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Scan"/>
-        </LinearLayout>
+                <!-- Connection Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
 
-        <!-- Device List -->
-        <ListView
-            android:id="@+id/deviceListView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"/>
+                    <Button
+                        android:id="@+id/btnConnect"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="CONNECT"
+                        android:backgroundTint="#4CAF50"
+                        android:textColor="#FFF"
+                        android:layout_marginEnd="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
-        <!-- Data Display -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SPEED"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"/>
-        <TextView
-            android:id="@+id/tvSpeedValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0.0 km/h"
-            android:textSize="32sp"
-            android:textStyle="bold"/>
+                    <Button
+                        android:id="@+id/btnDisconnect"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="DISCONNECT"
+                        android:backgroundTint="#F44336"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginStart="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
 
-        <!-- ODO & TRIP -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <!-- Logging Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ODO:"/>
-            <TextView
-                android:id="@+id/tvOdoValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="0.0 m"/>
+                    <Button
+                        android:id="@+id/btnStart"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="START"
+                        android:backgroundTint="#2196F3"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginEnd="2dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TRIP:"/>
-            <TextView
-                android:id="@+id/tvTripValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="0.0 m"/>
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/btnStop"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="STOP"
+                        android:backgroundTint="#FF9800"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="2dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
-        <!-- Stats -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/btnPause"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="PAUSE"
+                        android:backgroundTint="#9C27B0"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginStart="2dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="MAX:"/>
-            <TextView
-                android:id="@+id/tvMaxSpeedValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="0.0 km/h"/>
+                <!-- Utility Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="AVG:"/>
-            <TextView
-                android:id="@+id/tvAvgSpeedValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="0.0 km/h"/>
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/btnResetTrip"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="RESET TRIP"
+                        android:backgroundTint="#FF5722"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginEnd="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
-        <!-- Acceleration Z - TAMBAHKAN INI -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+                    <Button
+                        android:id="@+id/btnNextView"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="NEXT VIEW"
+                        android:backgroundTint="#607D8B"
+                        android:textColor="#FFF"
+                        android:enabled="false"
+                        android:layout_marginStart="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="ACCEL Z:"/>
-            <TextView
-                android:id="@+id/tvAccelZValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="0.00 g"/>
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btnScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="SCAN PAIRED DEVICES"
+                    android:layout_marginTop="8dp"
+                    style="@style/Widget.MaterialComponents.Button"/>
 
-        <!-- Control Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-
-            <Button
-                android:id="@+id/btnStart"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="START"
-                android:enabled="false"/>
-
-            <Button
-                android:id="@+id/btnStop"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="STOP"
-                android:enabled="false"/>
-
-            <Button
-                android:id="@+id/btnPause"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="PAUSE"
-                android:enabled="false"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnResetTrip"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="RESET TRIP"
-                android:enabled="false"/>
-
-            <Button
-                android:id="@+id/btnNextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="NEXT VIEW"
-                android:enabled="false"/>
-        </LinearLayout>
-
-        <!-- System Info -->
-        <TextView
-            android:id="@+id/tvSystemState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="State: READY"/>
-        <TextView
-            android:id="@+id/tvTimeValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time: --:--"/>
-        <TextView
-            android:id="@+id/tvPacketCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Packets: 0"/>
-        <TextView
-            android:id="@+id/tvViewMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View: 1/6"/>
-
+                <ListView
+                    android:id="@+id/deviceListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#fafafa"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </ScrollView>
